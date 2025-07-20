@@ -43,8 +43,7 @@
         }
 
         .logo {
-            width: 220px;
-            margin-bottom: 30px;
+            width: 300px;
         }
 
         #countdown {
@@ -86,10 +85,10 @@
 
     <div class="hero">
         <img class="logo" src="logo.png" alt="CyberSync logo" />
-        <h1>CyberSync</h1>
-        <h2>EXPERIENCE</h2>
-        <p id="countdown"></p>
         <p>Aguarde, vem ai um grande evento de segurança da informação para o Nordeste!</p>
+        <h3>23 de Outubro de 2025</h3>
+        <h4>Natal - RN</h4>
+        <p id="countdown"></p>
     </div>
     <div class="noise"></div>
     <div class="circles">
@@ -102,11 +101,19 @@
         const eventDate = new Date('2025-10-23T00:00:00');
         function updateCountdown() {
             const now = new Date();
-            const diff = Math.ceil((eventDate - now) / (1000 * 60 * 60 * 24));
-            document.getElementById('countdown').textContent = `Faltam ${diff} dias para o evento`;
+            let diff = Math.max(eventDate - now, 0);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff -= days * 1000 * 60 * 60 * 24;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff -= hours * 1000 * 60 * 60;
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff -= minutes * 1000 * 60;
+            const seconds = Math.floor(diff / 1000);
+            document.getElementById('countdown').textContent =
+                `Faltam ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos para o evento`;
         }
         updateCountdown();
-        setInterval(updateCountdown, 86400000);
+        setInterval(updateCountdown, 1000);
     </script>
 
 </body>
