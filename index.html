@@ -4,101 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyberSync Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
+            font-family: 'Inter', sans-serif;
             text-align: center;
+            background: radial-gradient(circle at center, #00bcd4 0%, #000 80%);
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
         }
 
-        :root {
-            --main-color: #021C3A; /* Cor principal para o texto e o SVG */
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+        .hero {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
         }
 
         h1 {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 72px;
-            color: var(--main-color);
-            margin-top: 30px;
-            font-weight: bold;
-            text-transform: capitalize;
+            margin: 0;
         }
 
         h2 {
-          color: #144183;
-          margin-top: -40px;
-          padding-left: 30px;
-          font-weight: bold;
-          text-transform: uppercase;
-          letter-spacing: 22px;
+            font-size: 28px;
+            letter-spacing: 10px;
+            color: #00bcd4;
+            margin-top: -10px;
+            text-transform: uppercase;
         }
 
         p {
-            font-size: 24px;
-            color: #666;
+            font-size: 20px;
             margin-top: 20px;
-            font-weight: normal;
         }
 
-        svg {
-            margin: 50px 0 -15px 0;
-            
-            width: 200px;
-            height: 200px;
-            fill: var(--main-color);
+        .logo {
+            width: 300px;
         }
+
+        #countdown {
+            color: #00bcd4;
+        }
+
+        .noise {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: url('data:image/png;base64,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');
+            z-index: 0;
+        }
+
+        .circles {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .circles span {
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .circles span:nth-child(1) { width: 200px; height: 200px; }
+        .circles span:nth-child(2) { width: 300px; height: 300px; }
+        .circles span:nth-child(3) { width: 400px; height: 400px; }
 
     </style>
 </head>
 <body>
 
-    <div class="content">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="389.000000pt" height="397.000000pt" viewBox="0 0 389.000000 397.000000"
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,397.000000) scale(0.100000,-0.100000)">
-<path d="M1990 3243 c-38 -14 -563 -218 -715 -278 -431 -169 -551 -219 -569
--234 -46 -40 -49 -61 -43 -301 11 -416 64 -709 186 -1020 172 -441 548 -840
-1028 -1092 146 -77 162 -78 291 -12 343 176 678 472 871 769 226 348 342 792
-358 1365 6 230 3 250 -44 292 -17 16 -156 73 -463 193 -52 20 -144 56 -205 80
--632 248 -650 254 -695 238z m185 -577 c139 -25 243 -69 350 -148 l61 -45 64
-59 c35 32 68 57 74 55 17 -6 20 -395 4 -415 -11 -12 -39 -14 -193 -8 -202 8
--245 13 -245 30 0 6 27 35 60 65 l61 53 -24 18 c-42 34 -160 87 -228 104 -131
-32 -282 14 -414 -50 -91 -44 -213 -169 -259 -266 -45 -93 -70 -211 -61 -289
-l6 -56 -96 -42 c-53 -22 -102 -41 -109 -41 -44 0 -32 317 15 445 141 378 535
-602 934 531z m680 -713 c42 -439 -237 -810 -675 -899 -108 -21 -273 -15 -379
-16 -91 26 -198 78 -269 131 l-53 40 -68 -60 c-38 -34 -74 -61 -80 -61 -8 0
--11 61 -11 205 0 201 0 205 23 219 19 13 51 14 217 5 112 -5 199 -14 205 -20
-7 -8 -10 -28 -55 -69 -35 -32 -62 -61 -60 -64 20 -20 134 -79 189 -98 88 -31
-286 -33 371 -4 162 54 290 164 358 306 45 95 62 169 62 276 l0 72 93 40 c50
-22 99 41 109 41 13 1 18 -13 23 -76z"/>
-</g>
-</svg>
-
-
-        <!-- Títulos -->
-        <h1>CyberSync</h1>
-        <h2>EXPERIENCE</h2>
-
-        <!-- Subtítulo -->
+    <div class="hero">
+        <img class="logo" src="logo.png" alt="CyberSync logo" />
         <p>Aguarde, vem ai um grande evento de segurança da informação para o Nordeste!</p>
-
+        <h3>23 de Outubro de 2025</h3>
+        <h4>Natal - RN</h4>
+        <p id="countdown"></p>
     </div>
+    <div class="noise"></div>
+    <div class="circles">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <script>
+        const eventDate = new Date('2025-10-23T00:00:00');
+        function updateCountdown() {
+            const now = new Date();
+            let diff = Math.max(eventDate - now, 0);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff -= days * 1000 * 60 * 60 * 24;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff -= hours * 1000 * 60 * 60;
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff -= minutes * 1000 * 60;
+            const seconds = Math.floor(diff / 1000);
+            document.getElementById('countdown').textContent =
+                `Faltam ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos para o evento`;
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
 
 </body>
 </html>
